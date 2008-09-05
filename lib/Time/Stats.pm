@@ -28,11 +28,13 @@ use strict;
 use warnings;
 
 use Time::HiRes qw(tv_interval gettimeofday);
-use Exporter qw(import);
-our @EXPORT = qw(mark clear stats);
+
+require Exporter;
+our @ISA = qw(Exporter);
+our @EXPORT_OK = qw(mark clear stats);
 our %EXPORT_TAGS = (all => [qw(mark clear stats)]);
 
-our $VERSION = '0.1';
+our $VERSION = '0.3';
 
 our %last_caller_data;
 our %time_data;
