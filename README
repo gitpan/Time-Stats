@@ -4,7 +4,7 @@ It's pretty smart about loops and being used in persistent environments such as 
 
 Sample usage:
 
-use Time::Stats qw(mark stats);
+use Time::Stats;
 
 sub has_slow {
     mark;
@@ -16,6 +16,22 @@ sub has_slow {
         mark;
     }
     stats;
+}
+
+If you don't want to import clear, mark and stats into your namespace, you can do this:
+
+use Time::Stats ();
+
+sub has_slow {
+    Time::Stats::mark;
+    my_method1();
+    Time::Stats::mark;
+    for (1 .. 10) {
+        Time::Stats::mark;
+        my_method2();
+        Time::Stats::mark;
+    }
+    Time::Stats::stats;
 }
 
 This program is free software; you can redistribute it and/or modify it under the same terms as Perl itself.

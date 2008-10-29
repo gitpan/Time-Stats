@@ -6,15 +6,21 @@ Time::Stats - Easy timing info
 
 =head1 SYNOPSIS
 
-use Time::Stats qw(mark clear stats);
-
-use Time::Stats ':all';
+use Time::Stats;
 
 clear();
 
 mark();
 
 stats();
+
+# If you don't want to import the above methods:
+
+use Time::Stats ();
+
+Time::Stats::clear();
+Time::Stats::mark();
+Time::Stats::stats();
 
 =head1 DESCRIPTION
 
@@ -31,10 +37,9 @@ use Time::HiRes qw(tv_interval gettimeofday);
 
 require Exporter;
 our @ISA = qw(Exporter);
-our @EXPORT_OK = qw(mark clear stats);
-our %EXPORT_TAGS = (all => [qw(mark clear stats)]);
+our @EXPORT = qw(mark clear stats);
 
-our $VERSION = '0.3';
+our $VERSION = '0.4';
 
 our %last_caller_data;
 our %time_data;
